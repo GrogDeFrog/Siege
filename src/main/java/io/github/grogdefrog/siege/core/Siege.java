@@ -1,4 +1,4 @@
-package io.github.grogdefrog.siege;
+package io.github.grogdefrog.siege.core;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,14 +18,13 @@ public class Siege
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        // Sets up the logger to accept input from our lovely mod
         logger = event.getModLog();
-        logger.info("Siege mod is loading");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        // some example code
-        logger.info("DIRT BLOCK");
+        logger.info("Siege has been successfully initialized!");
     }
 }
