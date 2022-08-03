@@ -21,7 +21,7 @@ public class Siege
 {
     public static final String MODID = "siege";
     public static final String NAME = "Siege";
-    public static final String VERSION = "ALPHA 0.0.2";
+    public static final String VERSION = "ALPHA 0.0.3";
 
     private static Logger logger;
 
@@ -56,13 +56,15 @@ public class Siege
         {
             if(event.getEntity() instanceof EntityZombie)
             {
+                TaskUtil taskUtil = new TaskUtil();
+                taskUtil.SiegeifyZombie((EntityZombie) event.getEntity());
                 EntityChicken test_chicken = new EntityChicken(event.getWorld());
                 test_chicken.setPosition(event.getEntity().posX,event.getEntity().posY,event.getEntity().posZ);
                 event.getWorld().spawnEntity(test_chicken);
-                if(event.isCancelable())
-                {
-                    event.setCanceled(true);
-                }
+                //if(event.isCancelable())
+                //{
+                //    event.setCanceled(true);
+                //}
             }
         }
     }
