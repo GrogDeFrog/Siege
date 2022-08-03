@@ -2,6 +2,7 @@ package io.github.grogdefrog.siege.core;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -20,7 +21,7 @@ public class Siege
 {
     public static final String MODID = "siege";
     public static final String NAME = "Siege";
-    public static final String VERSION = "ALPHA 0.0.1";
+    public static final String VERSION = "ALPHA 0.0.2";
 
     private static Logger logger;
 
@@ -53,11 +54,16 @@ public class Siege
         @SubscribeEvent
         public void mob_spawn(EntityJoinWorldEvent event)
         {
-
-            Entity pp = event.getEntity();
-            pp.posY = 100;
-            Entity poopoo = event.getEntity();
-
+            if(event.getEntity() instanceof EntityZombie)
+            {
+                EntityChicken test_chicken = new EntityChicken(event.getWorld());
+                test_chicken.setPosition(event.getEntity().posX,event.getEntity().posY,event.getEntity().posZ);
+                event.getWorld().spawnEntity(test_chicken);
+                if(event.isCancelable())
+                {
+                    event.setCanceled(true);
+                }
+            }
         }
     }
 
